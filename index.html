@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKINSPACE — France Trip Content Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#33343F;
+    --slate:#6E7583;
+    --parchment:#DEDAD4;
+    --stone:#C8C0B4;
+    --clay:#B5906A;
+    --white:#FFFFFF;
+    --clay-tint:#F1E7DD;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    font-family:'DM Mono',monospace;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:48px 32px 96px;}
+  .header-row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;}
+  .eyebrow{
+    font-size:12px;letter-spacing:3px;color:var(--slate);margin:0 0 8px;
+  }
+  h1{
+    font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:52px;line-height:1.05;margin:0 0 10px;color:var(--ink);
+  }
+  .subtitle{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+    font-size:20px;color:var(--slate);margin:0 0 8px;
+  }
+  .meta-line{font-size:12px;color:var(--slate);margin:0 0 36px;}
+  hr{border:none;border-top:1px solid var(--stone);margin:0 0 36px;}
+
+  .export-btn{
+    background:none;border:1px solid var(--stone);color:var(--slate);
+    font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;
+    padding:9px 16px;border-radius:2px;cursor:pointer;white-space:nowrap;
+    transition:border-color .15s, color .15s;margin-top:4px;
+  }
+  .export-btn:hover{border-color:var(--clay);color:var(--clay);}
+  .export-btn:focus-visible{outline:2px solid var(--clay);outline-offset:2px;}
+
+  .tabs{display:flex;gap:2px;margin-bottom:32px;border-bottom:1px solid var(--stone);}
+  .tab{
+    flex:1;background:none;border:none;cursor:pointer;text-align:left;
+    padding:14px 16px 16px;font-family:'DM Mono',monospace;color:var(--slate);
+    border-bottom:2px solid transparent;transition:border-color .15s, color .15s;
+  }
+  .tab .t-num{font-size:11px;letter-spacing:2px;display:block;margin-bottom:4px;}
+  .tab .t-title{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--ink);}
+  .tab.active{border-bottom-color:var(--clay);}
+  .tab.active .t-num{color:var(--clay);}
+  .tab:hover{color:var(--ink);}
+  .tab-overview{flex:0.6;}
+  .tab-overview .t-title{font-size:16px;}
+  .tab-tools{flex:0 0 auto;margin-left:auto;padding-left:24px;border-left:1px solid var(--stone);}
+
+  .panel{display:none;}
+  .panel.active{display:block;}
+
+  .callout{
+    background:var(--clay-tint);border-radius:2px;padding:20px 24px;margin-bottom:32px;
+    border-left:3px solid var(--clay);
+  }
+  .callout-title{
+    font-family:'Cormorant Garamond',serif;font-size:22px;margin:0 0 12px;color:var(--ink);
+  }
+  .start-row{display:flex;gap:18px;flex-wrap:wrap;}
+  .start-item{min-width:110px;}
+  .start-time{font-size:20px;font-weight:500;color:var(--ink);display:block;}
+  .start-label{font-size:11px;color:var(--slate);letter-spacing:.5px;}
+  .callout-note{font-size:12px;color:var(--slate);margin-top:14px;line-height:1.6;}
+
+  h2.section-heading{
+    font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;
+    margin:0 0 18px;color:var(--ink);
+  }
+  .eyebrow-small{font-size:11px;letter-spacing:2px;color:var(--slate);margin:0 0 6px;}
+
+  .day-purpose{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--slate);
+    margin:-10px 0 22px;line-height:1.5;max-width:640px;
+  }
+
+  .timeline{margin-bottom:44px;position:relative;padding-left:24px;}
+  .timeline::before{
+    content:"";position:absolute;left:4px;top:6px;bottom:6px;width:1px;background:var(--stone);
+  }
+  .t-stop{position:relative;padding-bottom:20px;}
+  .t-stop::before{
+    content:"";position:absolute;left:-24px;top:4px;width:7px;height:7px;border-radius:50%;
+    background:var(--clay);
+  }
+  .t-time{font-size:13px;font-weight:500;color:var(--clay);margin-bottom:2px;}
+  .t-activity{font-size:14px;color:var(--ink);margin-bottom:2px;}
+  .t-notetext{font-size:12px;color:var(--slate);line-height:1.5;}
+
+  .progress-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;}
+  .progress-text{font-size:12px;color:var(--slate);}
+
+  .shots-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-bottom:40px;
+  }
+  .shot-card{
+    background:var(--white);border:1px solid var(--stone);border-radius:2px;overflow:hidden;
+    display:flex;flex-direction:column;transition:opacity .2s;
+  }
+  .shot-card.done{opacity:.5;}
+  .drop-zone{
+    height:140px;border-bottom:1px solid var(--stone);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    background:repeating-linear-gradient(135deg, var(--parchment), var(--parchment) 8px, #ffffff 8px, #ffffff 16px);
+    position:relative;overflow:hidden;
+  }
+  .drop-zone img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;cursor:grab;touch-action:none;}
+  .drop-zone img.dragging{cursor:grabbing;}
+  .drop-zone .dz-label{font-size:11px;color:var(--slate);padding:0 12px;line-height:1.5;}
+  .shot-body{padding:14px 16px 16px;flex:1;display:flex;flex-direction:column;}
+  .tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+  .tag{
+    font-size:9.5px;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;
+    border-radius:10px;color:var(--white);
+  }
+  .tag.still{background:#8B8F7E;}
+  .tag.jac{background:var(--clay);}
+  .tag.slowmo{background:var(--slate);}
+  .tag.process{background:#A57F5A;}
+  .shot-title{font-family:'Cormorant Garamond',serif;font-size:19px;margin:0 0 6px;color:var(--ink);}
+  .shot-desc{font-size:12.5px;color:var(--ink);line-height:1.55;margin:0 0 10px;flex:1;}
+  .shot-prop{font-size:11px;color:var(--slate);margin:0 0 12px;}
+  .shot-prop b{color:var(--ink);font-weight:500;}
+  .check-row{display:flex;align-items:center;gap:8px;border-top:1px solid var(--parchment);padding-top:10px;}
+  .check-row input{width:14px;height:14px;accent-color:var(--clay);cursor:pointer;}
+  .check-row label{font-size:11px;color:var(--slate);cursor:pointer;}
+
+  .props-box{
+    background:var(--white);border:1px solid var(--stone);padding:20px 24px;margin-bottom:20px;
+  }
+  .props-box .section-heading{font-size:20px;margin-bottom:10px;}
+  .props-box ul{margin:0;padding-left:18px;font-size:13px;line-height:1.9;color:var(--ink);}
+
+  .prop-hunt{
+    background:var(--white);border:1px solid var(--stone);padding:24px 28px;margin-bottom:40px;
+  }
+  .prop-hunt-intro{font-size:12.5px;color:var(--ink);line-height:1.7;margin:0 0 22px;max-width:640px;}
+  .prop-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:22px;margin-bottom:18px;
+  }
+  .prop-cat-title{
+    font-family:'Cormorant Garamond',serif;font-size:16px;margin:0 0 10px;color:var(--clay);
+  }
+  .prop-item{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+  .prop-item input{width:13px;height:13px;accent-color:var(--clay);cursor:pointer;}
+  .prop-item label{font-size:12px;color:var(--ink);cursor:pointer;}
+
+  .save-warning{
+    position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+    background:var(--clay-tint);border:1px solid var(--clay);color:var(--ink);
+    font-size:11.5px;padding:10px 18px;border-radius:2px;z-index:50;display:none;
+    box-shadow:0 2px 10px rgba(0,0,0,.10);max-width:90vw;text-align:center;
+  }
+
+  /* Location cards */
+  .loc-card{background:var(--white);border:1px solid var(--stone);border-radius:2px;margin-bottom:20px;}
+  .loc-card > summary{list-style:none;cursor:pointer;padding:20px 24px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+  .loc-card > summary::-webkit-details-marker{display:none;}
+  .loc-summary-meta{font-size:10.5px;letter-spacing:1.5px;color:var(--slate);margin:0 0 6px;text-transform:uppercase;}
+  .loc-summary-title{font-family:'Cormorant Garamond',serif;font-size:23px;color:var(--ink);margin:0 0 4px;}
+  .loc-summary-purpose{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13.5px;color:var(--slate);margin:0;max-width:520px;line-height:1.5;}
+  .loc-chevron{font-size:10px;letter-spacing:1px;color:var(--clay);white-space:nowrap;padding-top:3px;}
+  .loc-card[open] .loc-chevron{opacity:.6;}
+  .loc-body{padding:0 24px 26px;}
+  .loc-block{margin-bottom:22px;}
+  .loc-block:last-child{margin-bottom:0;}
+  .loc-block-heading{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--clay);margin:0 0 8px;}
+  .loc-text{font-size:12.5px;color:var(--ink);line-height:1.7;margin:0;max-width:640px;}
+  .loc-list{margin:0;padding-left:18px;font-size:12.5px;color:var(--ink);line-height:1.8;max-width:640px;}
+  .loc-hero-list{margin:0;padding:0;list-style:none;}
+  .loc-hero-item{padding:8px 0;border-bottom:1px solid var(--parchment);}
+  .loc-hero-item:last-child{border-bottom:none;}
+  .loc-hero-title{font-size:12.5px;color:var(--ink);font-weight:500;}
+  .loc-hero-title .hero-star{color:var(--clay);margin-left:8px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:400;}
+  .loc-hero-desc{font-size:12px;color:var(--slate);margin:3px 0 0;line-height:1.6;max-width:600px;}
+  .loc-hero-photo{width:280px;max-width:100%;height:385px;margin:10px 0 4px;border:1px solid var(--stone);border-radius:2px;}
+  .loc-props-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;}
+  .loc-props-grid > div{min-width:0;}
+  .loc-props-cat-title{font-family:'Cormorant Garamond',serif;font-size:14px;margin:0 0 6px;color:var(--clay);}
+  .loc-props-grid p{font-size:12px;color:var(--ink);line-height:1.65;margin:0;}
+  .loc-props-grid .loc-list{max-width:none;}
+  .loc-props-grid .none{color:var(--slate);font-style:italic;}
+  .loc-cards{margin-top:22px;}
+
+  /* Overview panel */
+  .keyword-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .keyword-pill{
+    font-family:'DM Mono',monospace;font-size:11px;color:var(--clay);background:var(--clay-tint);
+    padding:6px 14px;border-radius:20px;
+  }
+  .master-hero-list{margin:0;padding:0;list-style:none;}
+  .master-hero-item{display:flex;gap:14px;padding:10px 0;border-bottom:1px solid var(--parchment);align-items:baseline;}
+  .master-hero-item:last-child{border-bottom:none;}
+  .master-hero-item input[type="checkbox"]{width:14px;height:14px;accent-color:var(--clay);cursor:pointer;align-self:center;flex-shrink:0;}
+  .master-hero-num{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--clay);min-width:26px;}
+  .master-hero-title{font-size:13px;color:var(--ink);font-weight:500;}
+  .master-hero-loc{font-size:11px;color:var(--slate);margin-left:8px;}
+  .styling-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;}
+  .styling-card{background:var(--parchment);border-top:3px solid var(--clay);border-radius:2px;padding:18px 20px 20px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+  .styling-cat-title{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--clay);margin:0 0 10px;font-weight:600;}
+  .styling-card p{font-size:12px;color:var(--ink);line-height:1.65;margin:0;}
+
+  .footer-note{font-size:11px;color:var(--slate);text-align:center;margin-top:40px;line-height:1.8;}
+
+  @media (max-width:640px){
+    h1{font-size:36px;}
+    .tabs{flex-wrap:wrap;}
+    .tab{flex:1 1 45%;}
+    .header-row{flex-direction:column;}
+  }
+
+  @media print{
+    .tabs, .export-btn, #import-file, .footer-note, .save-warning, .loc-chevron{display:none !important;}
+    .loc-card summary{cursor:default;}
+    .loc-hero-photo:not(:has(img)){display:none;}
+    body{background:#fff;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header-row">
+    <div>
+      <p class="eyebrow">SKINSPACE</p>
+      <h1>France Trip — Content Plan</h1>
+      <p class="subtitle">Grasse &amp; Valbonne · 23–27 July 2026</p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="export-btn" onclick="exportStateAsJSON()" aria-label="Export a backup of all saved progress as a JSON file">Export Backup (JSON)</button>
+      <button class="export-btn" onclick="document.getElementById('import-file').click()" aria-label="Import a previously exported backup file">Import Backup (JSON)</button>
+      <input type="file" accept="application/json" id="import-file" style="display:none" onchange="importStateFromJSON(this)">
+    </div>
+  </div>
+  <hr>
+
+  <div class="tabs" id="tabs"></div>
+  <div id="panels"></div>
+
+  <p class="footer-note">Tap any image box to drop in a reference photo — previews stay in this file for your own browser session (not yet saved on refresh).<br>Ticks, notes and progress now save automatically to this browser. Use "Export Backup" any time to keep a copy.</p>
+
+</div>
+
+<div id="save-warning" class="save-warning" role="alert"></div>
+
+<script>
+/* ---------------------------------------------------------------------
+   PLAN: static trip content. Edit this to add/change days, locations
+   and shots. Never written to by the app — safe to hand-edit any time.
+--------------------------------------------------------------------- */
+const PLAN = {
+  days: [
+    {
+      id:"d1", num:"DAY 1", date:"Thu 23 July", title:"Arrival & Valbonne",
+      purpose:"Establish the setting, introduce the visual world of the trip, and create authentic French lifestyle content as the journey begins.",
+      startOfDay:[
+        {time:"07:00", label:"Up & breakfast"},
+        {time:"07:30", label:"Depart for Bristol"},
+        {time:"10:55", label:"Depart Bristol → Nice"},
+      ],
+      startNote:"Travel day — no early call needed. First content window opens once we've checked in.",
+      checklists:[
+        {
+          id:"treasure-hunt", title:"Treasure Hunt", eyebrow:"PROP STATION", window:"15:30–18:30",
+          intro:"First job on arrival: \"shop the house\" before anyone starts shooting. Gather the best movable pieces — a basket, a linen throw, a bowl, a tray, a few candles, a small vase — into one prop station, so everything's to hand the moment inspiration strikes. Spend 30 minutes finding:",
+          categories:[
+            {title:"Natural Materials", items:["Stone","Wood","Linen","Wicker","Ceramic","Glass","Brass","Terracotta"]},
+            {title:"Styling Pieces", items:["Basket","Blanket","Tray","Vase","Bowl","Mug","Chair","Stool","Table","Candlestick"]},
+            {title:"Architectural Features", items:["Beautiful doorway","Arched window","Shutters","Fireplace","Staircase","Balcony","Stone wall","Wooden beams"]},
+            {title:"Light", items:["Best morning light","Best evening light","Window light","Shadow patterns","Golden hour spot"]},
+            {title:"Unexpected Finds", items:["Anything quirky, vintage, or distinctly French"]},
+          ]
+        }
+      ],
+      timeline:[
+        {time:"14:00", activity:"Land in Nice", note:"Collect hire car"},
+        {time:"14:30", activity:"Drive to Valbonne", note:"Approx. 30 minutes"},
+        {time:"15:00", activity:"Check into the apartment", note:"First-look interior content"},
+        {time:"15:30–18:30", activity:"Explore the village & prop-scout", note:"Buy anything usable, straight into the boot"},
+        {time:"19:00", activity:"Dinner — Trattoria Quattro", note:"A few minutes' walk from the apartment"},
+        {time:"20:30–21:00", activity:"Optional golden hour walk", note:"Sunset approx. 21:05 — worth stepping out either side of dinner"},
+      ],
+      locations:[
+        {
+          id:"d1-loc-arrival-nice", title:"Arrival in Nice", time:"14:00",
+          oneliner:"The true first frame of the trip — landing, first sense of the south of France.",
+          purpose:"The true first frame of the trip — landing, first sense of the south of France, before the story itself begins. Pure anticipation.",
+          hero:[
+            {title:"Airport arrival board", desc:"Signage reading \"Nice,\" establishing location instantly."},
+            {title:"Stepping outside", desc:"First steps into French light and air.", isHero:true},
+            {title:"Hire car handover", desc:"Keys, hands, the practical start of the road trip."},
+            {title:"Nice from the car", desc:"Coastline or palm trees glimpsed as we drive away, if the route allows."},
+            {title:"Jac's first reaction", desc:"Candid, unposed, arriving."},
+          ],
+          supporting:["Passport/boarding pass detail shot.", "Airport signage in French — an early language cue.", "Palm trees or Mediterranean planting near the terminal, if visible."],
+          capture:"Mostly quick candid stills, handheld and opportunistic — this is a fast-moving practical arrival, not a staged shoot. A short walking video through the terminal could work as a b-roll opener.",
+          propsNeeded:"Passport, boarding pass, travel bag — all naturally in hand.",
+          styling:"Nothing to style. Authenticity is the point — don't slow down the natural flow of arrival to compose a shot.",
+          bestLight:"Early-mid afternoon, bright southern French light. Work with it rather than against it; seek shade for portraits if the sun is harsh.",
+          outputs:"Stories (real-time), Reel opener, behind-the-scenes for socials.",
+          refs:[
+            {label:"Reference placeholder (Hero Image 1)", composition:"[add reference] — signage centred or as background, functional not artistic", lighting:"[add reference] — whatever's available, indoor terminal light", movement:"[add reference] — static or walking past", styling:"[add reference] — none", caption:"“Reference for how literal vs atmospheric this should feel — a functional location marker, not a beauty shot.”"},
+          ],
+          props:{home:"Passport, boarding pass, travel bag", airbnb:"", buy:"", natural:"Airport signage, southern French light, palm trees near the terminal"},
+        },
+        {
+          id:"d1-loc-drive-to-valbonne", title:"Drive to Valbonne", time:"14:30",
+          oneliner:"The in-between beat — on the road, discovering France.",
+          purpose:"The in-between beat — reinforces the \"on the road, discovering France\" thread and sets up the landscape visual language that recurs on Day 4.",
+          hero:[
+            {title:"Open road wide", desc:"Car on a countryside road, hills or palm trees in the distance."},
+            {title:"Hands on the wheel", desc:"Close, atmospheric."},
+            {title:"Windows down, hair moving", desc:"A sense of freedom and warmth.", isHero:true},
+            {title:"Passing scenery", desc:"Blurred trees/hills through the window, motion."},
+            {title:"Road sign", desc:"\"Valbonne\" or regional signage, marking progress."},
+          ],
+          supporting:["Sat-nav or map on a phone screen, in-car detail.", "Sunglasses, product or notebook on the dashboard as a small still life."],
+          capture:"Slow motion (120fps) for hands on the wheel or hair in the wind; standard video for passing scenery; quick stills for the road sign — passenger-shot only, never while driving.",
+          propsNeeded:"Sunglasses, product (optional, for a dashboard still life).",
+          styling:"Keep it unstaged and candid. Passenger captures; driver stays focused on the road.",
+          bestLight:"Mid-afternoon, bright — look for tree-dappled light through the windscreen for texture.",
+          outputs:"Reel b-roll, Stories, transition footage between Arrival and Airbnb.",
+          refs:[
+            {label:"Reference placeholder (Hero Image 2)", composition:"[add reference] — close crop, wheel and hands filling the frame, windscreen glare", lighting:"[add reference] — natural, dappled if possible", movement:"[add reference] — genuine driving motion, slight blur acceptable", styling:"[add reference] — no jewellery distracting from the moment", caption:"“Reference for how much motion blur reads as cinematic rather than just blurry — keep hands recognisable.”"},
+          ],
+          props:{home:"Sunglasses, product (optional)", airbnb:"", buy:"", natural:"Countryside road, hills, roadside trees, regional signage"},
+        },
+        {
+          id:"d1-loc-airbnb-arrival", title:"Airbnb Arrival & Interiors", time:"~15:00",
+          oneliner:"First impressions of light, texture and quietness — the mood before the story begins.",
+          purpose:"Sets the emotional register for the entire trip — first impressions of light, texture and quietness. This is the \"coming home to somewhere unfamiliar\" beat: the story hasn't started yet, but the mood has. Establishes SKINSPACE's connection to authentic materials and quality of light before a single fragrance conversation happens.",
+          hero:[
+            {title:"Threshold moment", desc:"Key turning in the door, first glimpse of the interior through a gap in the shutters.", isHero:true},
+            {title:"Light through the shutters", desc:"A single still frame of a sunlit patch on a tiled or stone floor, dust motes if visible."},
+            {title:"Unpacking as ritual", desc:"Hands lifting linen or a case onto a bed, soft-focus background."},
+            {title:"The view claimed", desc:"Looking out from the balcony/window onto the village or countryside, as if seeing it for the first time."},
+            {title:"Quiet interior portrait", desc:"Jac in the doorway or by a window, back partially to camera, taking it in."},
+          ],
+          supporting:["Detail pass: door handles, tiled floor patterns, shutter hardware, exposed beams.", "A single chair or table caught in a shaft of afternoon light, empty (sets a \"waiting to be used\" mood).", "Slow pan across the room from the doorway (used later as a b-roll transition between segments).", "Quick single-take video: walking in, dropping bags, opening the shutters (documentary, not staged)."],
+          capture:"Mostly stills + one Cinematic Mode clip for the \"walking in and opening shutters\" beat (shallow depth of field suits the intimate framing); a 10–15 sec locked-off time-lapse of light moving across the floor if there's a spare five minutes.",
+          propsNeeded:"None required — the space itself is the subject. If available, a folded linen throw or the day's travel bag can add human scale.",
+          styling:"Resist styling. Leave shutters half-open rather than fully open for more dramatic light. If a table is bare, that's fine — the emptiness supports the \"arrival\" narrative; styling comes later once props are gathered.",
+          bestLight:"Check-in is scheduled for 15:00 — mid-afternoon sun will be strong; look for shuttered, filtered light rather than direct sun. Revisit briefly at golden hour (around 20:30) if the same room catches warm light differently.",
+          outputs:"Instagram Stories (real-time arrival sequence), website \"the setting\" module, press kit mood imagery, Reel opener (first 3 seconds of a trip recap).",
+          refs:[
+            {label:"Reference placeholder (Hero Image 1 — Threshold Moment)", composition:"[add reference] — tight vertical crop, door frame as leading lines, subject small in frame", lighting:"[add reference] — backlit from the interior, silhouette-adjacent", movement:"[add reference] — mid-motion turning the key, not posed and static", styling:"[add reference] — bag/keys visible in hand for narrative context", caption:"“Shows how much shadow to hold onto in the doorway before the interior 'opens up' to camera.”"},
+            {label:"Reference placeholder (Hero Image 2 — Light Through the Shutters)", composition:"[add reference] — low angle, floor-level, shutters + shadow lines as the subject", lighting:"[add reference] — hard-edged shadow lines, no fill", movement:"[add reference] — static, locked-off", styling:"[add reference] — nothing added to frame; the raw floor/light only", caption:"“Reference for how graphic the shadow lines should be — avoid anything too soft or hazy.”"},
+          ],
+          props:{home:"Travel case, a folded linen throw (doubles as content + practical packing)", airbnb:"Any bowl, tray, ceramic piece found in the kitchen for a \"first still life\" shot", buy:"", natural:"Light through shutters, tiled/stone floor texture, architectural beams"},
+        },
+        {
+          id:"d1-loc-valbonne-village", title:"Valbonne Village", time:"15:30–18:30",
+          oneliner:"Honey-stone streets and village charm — the trip's true establishing shot.",
+          purpose:"The trip's true establishing shot — honey-stone streets and village charm — doubling as the visual companion to the Treasure Hunt prop-scouting window.",
+          hero:[
+            {title:"Village arrival wide", desc:"Honey-stone streets, shutters, the arcaded square.", isHero:true},
+            {title:"Doorway detail", desc:"A beautiful, characterful door found while wandering."},
+            {title:"Market square, quiet", desc:"Architectural, without people."},
+            {title:"Jac wandering", desc:"Candid, walking through narrow streets, not posed."},
+            {title:"Prop haul", desc:"The Treasure Hunt finds laid out."},
+          ],
+          supporting:["Shutter and window detail (texture pass).", "Café or shopfront exterior, quintessentially French.", "Cobblestone texture macro."],
+          capture:"Mostly handheld stills while walking; a short Cinematic Mode clip through a particularly beautiful street; time-lapse optional if there's a good vantage over the square.",
+          propsNeeded:"None for the wandering shots — whatever's found doubles as the prop-haul shot.",
+          styling:"Nothing to add; the village provides everything. For the prop-haul shot, arrange loosely on a doorstep or wall, not overly composed.",
+          bestLight:"Across the 15:30–18:30 window, light softens as the afternoon goes on — the later part (17:00+) will read warmer and more flattering than the earlier, harsher hour.",
+          outputs:"Reel (village walk-through), Carousel (architectural detail), website \"the setting\" module, Stories.",
+          refs:[
+            {label:"Reference placeholder (Hero Image 1)", composition:"[add reference] — wide, streets/square as the subject, people small or incidental", lighting:"[add reference] — softer late-afternoon light preferred", movement:"[add reference] — static or slow walking shot", styling:"[add reference] — none", caption:"“Reference for how empty vs lived-in the streets should feel — incidental people are fine, avoid anything staged-empty.”"},
+          ],
+          props:{home:"", airbnb:"", buy:"Whatever's found while prop-scouting (see Treasure Hunt checklist)", natural:"Honey-stone streets, shutters, arcaded square, architectural doorways"},
+        },
+      ]
+    },
+    {
+      id:"d2", num:"DAY 2", date:"Fri 24 July", title:"MANE & Expressions Parfumées",
+      purpose:"Show the process of finding natural ingredients, colour and local inspiration, and document the research behind the fragrance houses.",
+      startOfDay:[
+        {time:"06:45", label:"Up"},
+        {time:"07:15", label:"Breakfast"},
+        {time:"07:45", label:"Ready — smart, meeting-appropriate"},
+        {time:"08:15", label:"Depart apartment"},
+      ],
+      startNote:"Meeting time TBC with MANE — assume 09:00 start until confirmed. Both houses restrict photography inside, so today is light on content and heavy on notes.",
+      checklists:[
+        {
+          id:"market-run", title:"Market Run — Top Up & Scout", eyebrow:"MARKET STOP", window:"13:15–13:50",
+          intro:"A short pass through the local market before the second meeting — quick, so check the Day 1 tab first for anything still unticked and prioritise that. Whatever we don't get to here carries over to Sunday's market (Day 4):",
+          categories:[
+            {title:"Produce & Flowers", items:["Bunch of flowers","Peaches","Lemons","Grapes","Bright seasonal fruit","Fresh baguette","Croissants","Rustic loaf","French lifestyle products"]},
+            {title:"Prop Buys — If Still Needed", items:["Extra basket","Ceramics / bowls","Stoneware plates"]},
+            {title:"Scout & Shoot Only — Don't Buy", items:["French postcards","Botanical books","Vintage perfume books","Small mirrors","French newspaper"]},
+          ]
+        }
+      ],
+      timeline:[
+        {time:"09:00", activity:"MANE meeting", note:"No photography inside — notes and voice memos only"},
+        {time:"12:30", activity:"Lunch nearby", note:"Keep it quick — market stop straight after"},
+        {time:"13:15–13:50", activity:"Local market", note:"Produce, flowers and prop top-up — see checklist below"},
+        {time:"14:00", activity:"Expressions Parfumées", note:"No photography inside"},
+        {time:"16:00", activity:"Return toward Valbonne", note:"Free window if energy allows"},
+        {time:"19:30", activity:"Dinner in or around Grasse", note:"Reflect on the day's learnings"},
+      ],
+      locations:[
+        {
+          id:"d2-loc-lunch-after-mane", title:"Lunch after MANE", time:"12:30",
+          oneliner:"A quiet connective beat — processing the meeting before the market stop.",
+          purpose:"A quiet connective beat — processing the meeting before the market stop.",
+          hero:[
+            {title:"Lunch table, notebook open", desc:"Relaxed, candid.", isHero:true},
+            {title:"Hands writing", desc:"Close, mid-note."},
+            {title:"Table detail", desc:"Coffee cup, simple setting."},
+            {title:"Jac mid-conversation", desc:"Candid, reflective."},
+            {title:"Restaurant exterior", desc:"Quick establishing shot if time allows."},
+          ],
+          supporting:["A single dish or coffee cup, styled simply.", "Street view from the table if outdoors."],
+          capture:"Mostly stills, quick and candid; one short video of hands writing.",
+          propsNeeded:"Notebook, pen.",
+          styling:"Nothing needed — relaxed, not composed.",
+          bestLight:"Midday — favour shaded/covered seating.",
+          outputs:"Stories, Reel b-roll.",
+          props:{home:"Notebook, pen", airbnb:"", buy:"", natural:"Restaurant setting, midday light"},
+        },
+      ]
+    },
+    {
+      id:"d3", num:"DAY 3", date:"Sat 25 July", title:"Galimard & Fragonard",
+      purpose:"Document the craft, curiosity and human experience behind fragrance creation.",
+      startOfDay:[
+        {time:"05:15", label:"Up (optional dawn add-on)"},
+        {time:"06:02", label:"Sunrise"},
+        {time:"06:10–07:15", label:"Optional dawn content"},
+        {time:"09:15", label:"Depart for Galimard"},
+      ],
+      startNote:"10:00 workshop start is fixed. If energy allows, an optional dawn detour for flower-field content beforehand — otherwise a normal 07:30 start is fine.",
+      checklists:[],
+      timeline:[
+        {time:"09:45", activity:"Arrive Galimard", note:"Allow time to park and settle in"},
+        {time:"10:00", activity:"Private fragrance workshop", note:"Photography is open here — the content-rich half of the day"},
+        {time:"13:00", activity:"Lunch in Grasse", note:"Review the fragrances created"},
+        {time:"14:00", activity:"Galimard factory tour", note:"One hour, complimentary"},
+        {time:"15:30", activity:"Fragonard boutique", note:"Explore at your own pace"},
+        {time:"17:00", activity:"Return to Valbonne", note:""},
+        {time:"19:30", activity:"Dinner", note:"Discuss next steps for SKINSPACE"},
+      ],
+      locations:[
+        {
+          id:"d3-loc-galimard-workshop", title:"Galimard Workshop", time:"10:00",
+          oneliner:"Show the human, tactile side of perfumery — this is the emotional heart of the fragrance story, where a personal fragrance is created by hand.",
+          purpose:"Show the human, tactile side of perfumery — this is the emotional heart of the fragrance story, where a personal fragrance is created by hand. It moves the narrative from \"researching craft\" (Day 2) to \"practicing craft\" — the moment the trip's brand story becomes personal rather than observational.",
+          hero:[
+            {title:"The perfumer's organ", desc:"Wide shot of the rows of labelled bottles, warm wood tones, before anyone enters frame."},
+            {title:"Hands mid-blend", desc:"Close on hands holding blotter strips, genuine reaction (not posed) as a scent is tested.", isHero:true},
+            {title:"Bottle in progress", desc:"The moment Jac's own 100ml Eau de Parfum is being filled and labelled."},
+            {title:"Diploma & toast", desc:"A lighter, celebratory frame with champagne, marking completion."},
+            {title:"Portrait with the finished bottle", desc:"Jac holding the finished, labelled bottle, natural workshop light behind."},
+          ],
+          supporting:["Macro texture shot of a curling blotter strip.", "Detail of hand-written labels or workshop signage.", "Wide establishing shot of the workshop room itself before the session starts (empty, quiet).", "A short sequence of blotter strips being smelled and set aside — repetitive gesture, good for a montage cut."],
+          capture:"Mix of stills and short handheld video clips for the process beats (blending, filling, labelling); Cinematic Mode for the finished-bottle portrait to soften the background; slow motion (120fps) optional for the champagne pour if the celebratory beat is filmed. Photography is confirmed open here, so no restrictions — shoot generously and edit down later.",
+          propsNeeded:"Blotter strips (provided on site), the finished bottle itself once filled.",
+          styling:"Let the workshop's own materials do the styling — no need to bring or add anything. For the portrait shot, keep hands and bottle as the focal point rather than a full posed frame.",
+          bestLight:"Workshop runs 10:00–13:00, indoor and photography-friendly throughout; look for whichever window light is available near the organ for the closer portrait shots, and use available warm workshop lighting for the wider process shots rather than flash.",
+          outputs:"Instagram Reel (the \"making of Jac's fragrance\" narrative arc), Carousel (organ → blending → filling → finished bottle, told in four frames), Behind the Scenes for internal/press use, potential press feature image (the perfumer's organ wide shot).",
+          props:{home:"None needed", airbnb:"None needed", buy:"None — the finished bottle itself becomes a \"prop\" for later days once complete", natural:"Blotter strips, workshop bottles, warm wood interior tones (all provided on site)"},
+        },
+        {
+          id:"d3-loc-grasse-old-town", title:"Grasse Old Town", time:"~13:00",
+          oneliner:"A wandering, textural beat around lunch and Fragonard — Grasse's own honey-stone streets, hillside cousin to Valbonne with its own perfume-capital character.",
+          purpose:"A wandering, textural beat around lunch and Fragonard — Grasse's own honey-stone streets, hillside cousin to Valbonne with its own perfume-capital character.",
+          hero:[
+            {title:"Grasse street wide", desc:"Stone streets, hillside elevation."},
+            {title:"Lunch spot exterior or terrace", desc:"If a view is available."},
+            {title:"Doorway/architectural detail", desc:"Distinct from Valbonne's."},
+            {title:"Jac wandering", desc:"Candid, between stops."},
+            {title:"View over Grasse", desc:"Wide, elevated, if a vantage point is found — Grasse street wide serves as the backup shot if none is found.", isHero:true},
+          ],
+          supporting:["Perfume-related shopfronts/signage.", "Texture macro — stone, ironwork, shutters."],
+          capture:"Handheld stills, opportunistic; a Cinematic clip if a striking street is found.",
+          propsNeeded:"None.",
+          styling:"Nothing to add.",
+          bestLight:"Midday is harsher (keep to shaded streets); post-Fragonard afternoon is softer and more flattering.",
+          outputs:"Carousel, Website \"the setting\" module, Reel b-roll.",
+          props:{home:"", airbnb:"", buy:"", natural:"Stone streets, hillside views, signage"},
+        },
+        {
+          id:"d3-loc-galimard-factory-tour", title:"Galimard Factory Tour", time:"14:00", noPhotos:true,
+          oneliner:"Shifts from personal craft to industrial heritage — production at scale, a change of pace from the workshop.",
+          purpose:"Shifts from personal craft to industrial heritage — production at scale, a change of pace from the workshop.",
+          hero:[
+            {title:"Copper stills", desc:"Heritage equipment, warm metallic tones.", isHero:true},
+            {title:"Raw material sacks or barrels", desc:"Texture, scale."},
+            {title:"Production line wide", desc:"Scale of the operation."},
+            {title:"Guide-led detail", desc:"A hand gesturing mid-explanation."},
+            {title:"Historic signage or plaques", desc:"Heritage and provenance."},
+          ],
+          supporting:["Texture macro of raw materials.", "Wide establishing shot of the factory building."],
+          capture:"Mostly stills; a short walking video through the line for scale.",
+          propsNeeded:"None — the factory provides everything.",
+          styling:"None needed.",
+          bestLight:"Indoor, consistently lit — avoid flash to keep the warm heritage tone.",
+          outputs:"Carousel (heritage/process), Behind the Scenes, press.",
+          props:{home:"", airbnb:"", buy:"", natural:"Copper stills, sacks/barrels, signage"},
+        },
+        {
+          id:"d3-loc-fragonard", title:"Fragonard", time:"15:30", noPhotos:true,
+          oneliner:"A lighter, retail-facing beat — pattern, repetition, colour. A palette-cleanser after two intensive fragrance-house visits.",
+          purpose:"A lighter, retail-facing beat — pattern, repetition, colour. A palette-cleanser after two intensive fragrance-house visits.",
+          hero:[
+            {title:"Fragonard displays", desc:"Bottle displays in repetition.", isHero:true},
+            {title:"Boutique interior wide", desc:"Architecture and merchandising together."},
+            {title:"Jac browsing", desc:"Candid, relaxed."},
+            {title:"Bottle detail", desc:"A single well-designed bottle, close."},
+            {title:"Boutique exterior", desc:"A final \"brand house\" bookend to MANE and Expressions Parfumées."},
+          ],
+          supporting:["Colour-led packaging/ribbon/display texture.", "Window display, if striking."],
+          capture:"Mostly stills; pattern shots straight-on for symmetry.",
+          propsNeeded:"None.",
+          styling:"None — let the retail design do the work.",
+          bestLight:"Even indoor retail lighting, no need to chase natural light.",
+          outputs:"Carousel (pattern/repetition), Stories, Website \"the setting\" module.",
+          props:{home:"", airbnb:"", buy:"", natural:"Displays, architecture, retail lighting"},
+        },
+      ]
+    },
+    {
+      id:"d4", num:"DAY 4", date:"Sun 26 July", title:"Content Creation Day",
+      purpose:"Bring together lifestyle, colour and human moments — the day the story comes together.",
+      startOfDay:[
+        {time:"05:45", label:"Up"},
+        {time:"06:02", label:"Sunrise"},
+        {time:"06:30", label:"Ready — hair & makeup fully done"},
+        {time:"06:30–08:00", label:"Golden hour content"},
+      ],
+      startNote:"The earliest start of the trip — worth protecting. Light is workable from sunrise but softest and most flattering in the 45 minutes either side of 06:30.",
+      checklists:[],
+      timeline:[
+        {time:"08:00", activity:"Quick breakfast", note:"On the go if needed"},
+        {time:"08:30–11:00", activity:"Market & village content", note:"Flower stalls, produce, stone streets"},
+        {time:"12:30", activity:"Lunch in Mougins", note:"Review the morning's content"},
+        {time:"14:00–17:00", activity:"Afternoon driving & content", note:"Stop wherever inspiration strikes"},
+        {time:"17:00–18:30", activity:"Wine tasting", note:"Domaine des Hautes Collines, subject to Sunday opening"},
+        {time:"19:45–20:45", activity:"Golden hour wrap shots", note:"Sunset approx. 21:05"},
+        {time:"20:30", activity:"Dinner — Meat & Wine, Valbonne", note:"Celebrate a successful trip"},
+      ],
+      locations:[
+        {
+          id:"d4-loc-flower-fields", title:"Flower Fields", time:"within 08:30–11:00",
+          oneliner:"The trip's most sensory, brand-relevant beat — direct visual connection to fragrance's raw materials.",
+          purpose:"The trip's most sensory, brand-relevant beat — direct visual connection to fragrance's raw materials.",
+          hero:[
+            {title:"Flowers in the wind", desc:"Locked-off, slow motion, jasmine/lavender/wildflowers.", isHero:true},
+            {title:"Jac in the flower field", desc:"Picking or handling blooms, golden light."},
+            {title:"Field wide", desc:"Scale and colour from a distance."},
+            {title:"Macro bloom detail", desc:"Single flower, shallow focus.", noPhoto:true},
+            {title:"Product in the field", desc:"Brand-to-source connection.", noPhoto:true},
+          ],
+          supporting:["Basket of freshly picked blooms.", "Hands brushing through flowers."],
+          capture:"Slow motion (120fps) for wind movement, locked-off; standard stills for wide/macro; Cinematic for the product shot.",
+          propsNeeded:"Basket, product.",
+          styling:"None — let the field provide colour; product placement should feel found, not staged.",
+          bestLight:"Earliest, softest light of the day — prioritise before it hardens.",
+          outputs:"Reel (sensory slow motion), Carousel, Website \"sourced in France\" — pairs with the Markets flat lay.",
+          props:{home:"Basket, product", airbnb:"", buy:"None (only lightly handled unless pick-your-own)", natural:"Flowers, wind, morning light"},
+        },
+        {
+          id:"d4-loc-markets", title:"Markets", time:"within 08:30–11:00",
+          oneliner:"The most colour- and texture-rich stop of the trip — flowers, produce and French market life in one place, gathered in the day's best light.",
+          purpose:"The most colour- and texture-rich stop of the trip — flowers, produce and French market life in one place, gathered in the day's best light.",
+          hero:[
+            {title:"Flower stall wide", desc:"Full stall of blooms, ideally jasmine, tuberose or roses if in season, shot straight-on."},
+            {title:"Flower stall macro", desc:"Single bloom in tight focus, shallow depth of field.", noPhoto:true},
+            {title:"Jac browsing the stalls", desc:"Picking or handling produce, hands mid-motion."},
+            {title:"Market flat lay", desc:"Flowers, peaches, lemons and grapes arranged loosely on a market table or linen."},
+            {title:"Product among produce", desc:"The SKINSPACE product placed among flowers or fruit, a \"sourced not synthetic\" visual cue.", isHero:true},
+          ],
+          supporting:["Wide street shot of stone streets and stalls together, establishing the setting.", "Hands exchanging money/produce with a stallholder (candid, unposed).", "Bread and pastry haul shot, styled loosely in a basket."],
+          capture:"Mostly handheld stills for spontaneity; slow motion (120fps) for flowers moving in the wind if a locked-off angle is available; Cinematic Mode for the product-among-produce shot to isolate it from a busy market background.",
+          propsNeeded:"Basket (for carrying and styling), product (for the \"among produce\" shot).",
+          styling:"Let the market provide the colour — avoid over-arranging stalls that aren't ours to style; for the flat lay, loosely gather rather than perfectly arrange, to keep it feeling found rather than staged.",
+          bestLight:"Market window is 08:30–11:00 — morning light is soft and golden early, harsher by 11:00, so prioritise hero shots in the first hour.",
+          outputs:"Reel (market montage), Carousel (produce/flowers/bread), Stories (real-time), website \"sourced in France\" module.",
+          props:{home:"Basket (if not already sourced Day 1), product", airbnb:"Linen for the flat lay", buy:"Flowers, peaches, lemons, grapes, bread (also serves as styling props for later days)", natural:"Market colour, stone street textures, morning light"},
+        },
+        {
+          id:"d4-loc-mougins", title:"Mougins", time:"~12:30",
+          oneliner:"A styled, editorial contrast to the rawer market content — hilltop arches, textured stone.",
+          purpose:"A styled, editorial contrast to the rawer market content — hilltop arches, textured stone.",
+          hero:[
+            {title:"Mougins street", desc:"Hilltop arches, textured stone, editorial.", isHero:true},
+            {title:"Lunch table", desc:"Reviewing the morning's content.", noPhoto:true},
+            {title:"Architectural detail", desc:"An arch, doorway or wall, considered.", noPhoto:true},
+            {title:"Jac walking the street", desc:"Composed, more editorial than the market energy.", noPhoto:true},
+            {title:"View from the hilltop", desc:"Wide landscape if accessible.", noPhoto:true},
+          ],
+          supporting:["Restaurant/café exterior, if characterful.", "Texture detail — stone, ironwork, shutters."],
+          capture:"Mostly composed stills, slower pace than the market morning; Cinematic for architectural detail.",
+          propsNeeded:"None.",
+          styling:"A good moment for a more elevated Jac look (see Styling — Jac), given the contrast to the morning.",
+          bestLight:"Midday, bright — favour shaded arches/doorways.",
+          outputs:"Carousel, Website \"the setting\" module, press.",
+          props:{home:"", airbnb:"", buy:"", natural:"Arches, stone texture, elevated views"},
+        },
+        {
+          id:"d4-loc-countryside-roads", title:"Countryside Roads", time:"14:00–17:00", noPhotos:true,
+          oneliner:"Open and instinctive — no fixed stops, following the light. Mirrors Day 1's drive but looser, more golden, more confident by this point.",
+          purpose:"Open and instinctive — no fixed stops, following the light. Mirrors Day 1's drive but looser, more golden, more confident by this point.",
+          hero:[
+            {title:"Driving countryside", desc:"Hands on wheel, windows down, slow motion.", isHero:true},
+            {title:"Open road wide", desc:"Car small in a big landscape.", noPhoto:true},
+            {title:"Impromptu stop", desc:"Wherever inspiration strikes.", noPhoto:true},
+            {title:"Passing light", desc:"Sun flare through the windscreen, in motion.", noPhoto:true},
+            {title:"Jac looking out the window", desc:"Candid, reflective.", noPhoto:true},
+          ],
+          supporting:["Roadside wildflowers or colour, spotted and stopped for.", "Wide landscape from a scenic pull-off."],
+          capture:"Slow motion for hands-on-wheel and passing scenery; stills for stops; Cinematic for the window-gazing portrait.",
+          propsNeeded:"None.",
+          styling:"Unstaged throughout.",
+          bestLight:"Afternoon, softening toward golden hour — the later the better.",
+          outputs:"Reel b-roll, Stories, transition footage.",
+          props:{home:"", airbnb:"", buy:"", natural:"Roads, hills, golden light"},
+        },
+        {
+          id:"d4-loc-vineyard", title:"Vineyard", time:"17:00–18:30",
+          oneliner:"A celebratory, golden-hour beat — wine, terroir, a lighter social energy as content-gathering winds down.",
+          purpose:"A celebratory, golden-hour beat — wine, terroir, a lighter social energy as content-gathering winds down.",
+          hero:[
+            {title:"Wine pour, slow motion", desc:"Bottle to glass, echoes the fragrance story via \"the nose.\"", isHero:true},
+            {title:"Jac tasting", desc:"Swirling, mid-motion, not posed."},
+            {title:"Vineyard rows wide", desc:"Golden hour across the vines."},
+            {title:"Glass detail", desc:"Close, light through the wine."},
+            {title:"Golden hour product hold", desc:"Product against the vineyard, Provençal light.", noPhoto:true},
+          ],
+          supporting:["Bottle/label detail, if distinctive.", "Tasting table, styled loosely."],
+          capture:"Slow motion (240fps) for the pour; stills for tasting/vineyard-wide; Cinematic for the product hold.",
+          propsNeeded:"Product.",
+          styling:"The trip's most elevated golden-hour look (see Styling — Jac).",
+          bestLight:"The whole window trends toward golden hour — prioritise portrait/product shots later.",
+          outputs:"Reel (celebratory close), Carousel, Stories.",
+          props:{home:"Product", airbnb:"", buy:"Wine, if purchasing a bottle", natural:"Vineyard rows, golden light, tasting glasses"},
+        },
+      ]
+    },
+    {
+      id:"d5", num:"DAY 5", date:"Mon 27 July", title:"Travel Home",
+      purpose:"A last chance to reflect on the trip before we're back in the Cotswolds.",
+      startOfDay:[
+        {time:"Morning", label:"Breakfast, then last-minute content in the apartment before check-out"},
+        {time:"16:15", label:"Depart Nice → Bristol"},
+      ],
+      startNote:"A relaxed final morning — no fixed call time. Squeeze in any last shots and capture any new ideas before checking out, then head for the airport in the early afternoon.",
+      checklists:[],
+      timeline:[
+        {time:"Morning", activity:"Breakfast, then last-minute content in the apartment", note:"Relaxed, unhurried — capture any new ideas before check-out"},
+        {time:"Morning", activity:"Check out of the apartment", note:""},
+        {time:"Afternoon", activity:"Head to Nice Airport", note:"Allow time for the drive and check-in"},
+        {time:"16:15", activity:"Depart Nice → Bristol", note:"Flight confirmed"},
+        {time:"17:30", activity:"Arrive Bristol", note:"Back in the Cotswolds"},
+      ],
+      locations:[
+        {
+          id:"d5-loc-final-morning", title:"Final Morning", time:"Morning, before departure", noPhotos:true,
+          oneliner:"The trip's natural closing chapter — a quiet bookend to Day 1's arrival.",
+          purpose:"The trip's natural closing chapter — quieter, reflective, a visual bookend to Day 1's Airbnb Arrival. Where the trip began with anticipation and a threshold crossed, it closes with the same doorway, seen once more, and the sense of a story completed.",
+          hero:[
+            {title:"Slow breakfast", desc:"Coffee, unhurried, the last morning in the apartment."},
+            {title:"Apartment in morning light", desc:"A final pass through the space, echoing Day 1's first-look shots."},
+            {title:"Packing", desc:"Hands folding, cases closing — practical but atmospheric."},
+            {title:"Final balcony or window moment", desc:"Echoes \"The View Claimed\" from arrival."},
+            {title:"Leaving the apartment", desc:"Door closing, a direct bookend to Threshold Moment.", isHero:true},
+          ],
+          supporting:["Coffee cup in morning light, styled simply.", "Loading the car — a boot flat lay, bookending Day 1's boot flat lay.", "Final drive — countryside or coastline passing the window.", "Nice Airport departure — quiet and practical, mirroring the trip's opening arrival."],
+          capture:"Mostly stills, slower and more considered than earlier in the trip — this is a reflective beat, not a rushed one. One Cinematic Mode clip for the door-closing moment, matching the framing and depth of field used for Threshold Moment on Day 1.",
+          propsNeeded:"Travel case, coffee cup — both already to hand as part of the morning routine.",
+          styling:"Relaxed and unstyled — softer and quieter than the rest of the trip. Let the morning move at its own pace rather than composing around it.",
+          bestLight:"Early morning, soft light — calmer and cooler in tone than Day 4's golden hour, which suits the reflective mood of a last look.",
+          outputs:"Reel closer (bookending the trip's opening frame), website \"the journey\" module, Stories.",
+          refs:[
+            {label:"Reference placeholder (Hero Image 5 — Leaving the Apartment)", composition:"[add reference] — door closing, mirrors Threshold Moment", lighting:"[add reference] — soft morning, cooler tone", movement:"[add reference] — mid-motion, door closing", styling:"[add reference] — travel case visible in frame", caption:"“Same doorway, same framing as Threshold Moment — opposite direction.”"},
+          ],
+          props:{home:"", airbnb:"Coffee cup, travel case", buy:"", natural:"Morning light, apartment interior, airport signage"},
+        },
+      ]
+    },
+  ],
+  sharedChecklists:[
+    {
+      id:"pack", title:"Pack", eyebrow:"PACKING LIST", progressWord:"packed",
+      intro:"Everything to gather before the trip, organised by category:",
+      categories:[
+        {title:"iPhone Essentials", items:["iPhone","Main charging cable","Spare charging cable","UK plug","EU travel adaptor","Power bank","Power bank charging cable","Car charger","Portable phone storage or enough iCloud storage","AirPods"]},
+        {title:"Filming Equipment", items:["Bluetooth remote shutter","Gimbal","Clip-on light or small portable LED","Reflector","Microfibre lens cloth","Lens wipes","Waterproof pouch or small protective bag","Extension lead or multi-USB plug"]},
+        {title:"Styling and Shoot Kit", items:["Product-cleaning cloth","Cotton buds","Tissues","Kitchen roll","Hand sanitiser","Blu Tack","Double-sided tape","Clear tape","Scissors","Safety pins","Bulldog clips or mini clamps","String or fishing wire","Small lint roller","Crease-release spray","Mini steamer, if practical","Plain white sheet or neutral fabric for backgrounds","Neutral boards or card for flat lays","Small spray bottle for water droplets","Small mirror","Bin bags for carrying props or protecting items"]},
+      ]
+    },
+    {
+      id:"before-leaving-morning", title:"Before Leaving Each Morning", eyebrow:"DAILY CHECKLIST", progressWord:"done",
+      intro:"A quick pass before heading out each day:",
+      categories:[
+        {title:"", items:["Clean all camera lenses","Charge phone, gimbal, lights and power bank","Check available phone storage","Download the day's plan and references so they work offline","Check the weather and sunrise/sunset times","Confirm locations, opening hours and photography permissions","Pack the correct products, props and outfits for that day","Check products are clean, full and facing the correct way","Put phone on Do Not Disturb","Turn off low-power mode while filming","Bring water, snacks and sun protection"]}
+      ]
+    },
+    {
+      id:"iphone-settings", title:"iPhone Settings to Check", eyebrow:"CAMERA SETUP", progressWord:"checked",
+      intro:"Settings to confirm before filming:",
+      categories:[
+        {title:"", items:["Film mainly in 4K","Use 30 fps for general content","Use 60 fps when you may want smooth slow motion","Use the standard 1× lens for most content","Avoid excessive digital zoom","Turn on the camera grid and level","Lock focus and exposure when filming a fixed composition","Slightly lower exposure in bright sunlight to protect highlights","Keep HDR consistent across clips","Check that the lens is clean before every major setup","Record a short test clip and watch it back before continuing"]}
+      ]
+    },
+    {
+      id:"on-location-reminders", title:"On-Location Shoot Reminders", eyebrow:"SHOOT REMINDERS", progressWord:"covered",
+      intro:"For every key setup, capture:",
+      categories:[
+        {title:"Every Key Setup", items:["Wide establishing shot","Medium shot","Close-up","Extreme product detail","Portrait version","Landscape version","Still photograph","Static video","Movement video","Clean version without people","Version featuring Jac","Behind-the-scenes clip"]},
+        {title:"Movement Ideas", items:["Walking toward camera","Walking away","Looking over shoulder","Hands holding or opening product","Applying product","Picking flowers or market produce","Opening shutters or doors","Pouring a drink","Fabric moving in the breeze","Product passing through sunlight","Slow pan across the setting","Product reveal from behind an object"]},
+        {title:"Composition Checks", items:["Is the product label straight and readable?","Is there anything distracting in the background?","Are bins, cars, signs or crowds visible?","Is the horizon straight?","Are hands and feet awkwardly cropped?","Is the light flattering?","Have I captured negative space for text?","Have I captured enough variety, rather than repeating one angle?","Does it still feel light, natural, premium and French?"]},
+      ]
+    },
+    {
+      id:"before-leaving-location", title:"Before Leaving a Location", eyebrow:"WRAP CHECKLIST", progressWord:"done",
+      intro:"A final pass before moving on:",
+      categories:[
+        {title:"", items:["Check every essential hero shot has been captured","Watch important videos back","Zoom into photographs to check sharpness","Check there are no marks on products","Capture extra surroundings, textures and transitions","Take photographs of location names or signs for reference","Add quick notes about the strongest shots"]}
+      ]
+    },
+    {
+      id:"end-of-day", title:"End-of-Day Routine", eyebrow:"EVENING ROUTINE", progressWord:"done",
+      intro:"Wrap up each day the same way:",
+      categories:[
+        {title:"", items:["Back everything up immediately","Create folders by date, location and brand","Separate SKINSPACE, personal and behind-the-scenes content","Favourite the strongest images and clips","Charge every device","Clean products and equipment","Reset and repack the bag for the next morning","Note any missing shots that need to be recreated","Update the content plan to show what is complete"]}
+      ]
+    },
+  ],
+  overview:{
+    creativeOverview:"A research-and-creation trip to SKINSPACE's fragrance heartland — Grasse and Valbonne — told as a five-day arc from arrival to departure. The story moves from curiosity (Day 1's first impressions) through craft and industry (Days 2–3's fragrance houses) to hands-on creation and synthesis (Day 4), before closing on a quiet, reflective note that mirrors the trip's opening (Day 5). Visually, it stays true to SKINSPACE's own palette and mood: warm, honest, unhurried, and led by natural light rather than heavy styling.",
+    visualKeywords:["Honey-stone", "Golden hour", "Linen and terracotta", "Unhurried", "Sun-bleached", "Market colour", "Hand-crafted", "Quiet luxury", "Candid over posed", "Natural texture", "Soft shadow", "Artisan detail", "Warmth"],
+    contentPillars:[
+      {title:"Origin & Craft", desc:"The research and making of fragrance (MANE, Expressions Parfumées, Galimard, Fragonard) — process, ingredients, heritage."},
+      {title:"The Landscape", desc:"Countryside, flower fields, markets, honey-stone villages — the raw sensory backdrop fragrance comes from."},
+      {title:"Jac, in Context", desc:"The human thread through the trip — styled but candid, tying SKINSPACE's brand voice to a real person."},
+      {title:"The Journey", desc:"Arrival to departure as one story, not just a set of separate shots."},
+    ],
+    objectives:[
+      "Build a content bank covering Stories, Reels and Carousels for the months following the trip.",
+      "Capture brand-storytelling assets connecting SKINSPACE to authentic French fragrance-making.",
+      "Produce press- and website-ready imagery (the \"the setting,\" \"the research,\" \"sourced in France\" modules already referenced across the location cards).",
+      "Document Jac's own fragrance being made at Galimard as a keepsake and storytelling anchor.",
+      "Test and refine SKINSPACE's visual brand language for future shoots.",
+    ],
+    masterProps:[
+      {cat:"Bring from Home", items:["Passport & boarding pass", "Travel bag / travel case", "Folded linen throw", "Sunglasses", "SKINSPACE product", "Notebook and pen", "Basket"]},
+      {cat:"Source from the Airbnb", items:["A bowl, tray or ceramic piece from the kitchen", "Coffee cup", "Linen for flat lays"]},
+      {cat:"Buy or Gather Locally", items:["Day 1 Treasure Hunt village finds", "Market flowers, peaches, lemons, grapes, bread", "A bottle of wine, if purchasing"]},
+      {cat:"Created During the Trip", items:["Jac's own 100ml Eau de Parfum, made at Galimard — becomes a prop for later days"]},
+    ],
+    masterHeroShots:[
+      {id:"mh-stepping-outside", title:"Stepping Outside", location:"Arrival in Nice"},
+      {id:"mh-windows-down-hair-moving", title:"Windows Down, Hair Moving", location:"Drive to Valbonne"},
+      {id:"mh-threshold-moment", title:"Threshold Moment", location:"Airbnb Arrival & Interiors"},
+      {id:"mh-village-arrival-wide", title:"Village Arrival Wide", location:"Valbonne Village"},
+      {id:"mh-lunch-table-notebook-open", title:"Lunch Table, Notebook Open", location:"Lunch after MANE"},
+      {id:"mh-product-among-produce", title:"Product Among Produce", location:"Markets (shared)"},
+      {id:"mh-expressions-parfumees-exterior", title:"Expressions Parfumées Exterior", location:"Expressions Parfumées"},
+      {id:"mh-hands-mid-blend", title:"Hands Mid-Blend", location:"Galimard Workshop"},
+      {id:"mh-copper-stills", title:"Copper Stills", location:"Galimard Factory Tour"},
+      {id:"mh-fragonard-displays", title:"Fragonard Displays", location:"Fragonard"},
+      {id:"mh-view-over-grasse", title:"View Over Grasse", location:"Grasse Old Town"},
+      {id:"mh-flowers-in-the-wind", title:"Flowers in the Wind", location:"Flower Fields"},
+      {id:"mh-driving-countryside", title:"Driving Countryside", location:"Countryside Roads"},
+      {id:"mh-mougins-street", title:"Mougins Street", location:"Mougins"},
+      {id:"mh-wine-pour-slow-motion", title:"Wine Pour, Slow Motion", location:"Vineyard"},
+      {id:"mh-leaving-the-apartment", title:"Leaving the Apartment", location:"Final Morning"},
+    ],
+    stylingJac:{
+      intro:"A quick reference so Jac's on-camera look stays consistent with the trip's aesthetic — effortless, French, warm, elevated but never overdone.",
+      categories:[
+        {cat:"Headwear", desc:"A wide-brim straw or panama hat — softens strong midday light, reads instantly “South of France.”"},
+        {cat:"Eyewear", desc:"Classic tortoiseshell or gold-frame sunglasses — practical for market and countryside shoots, quietly editorial."},
+        {cat:"Dresses & silhouettes", desc:"Linen in cream, stone or soft ochre — breathable, and echoes the document's own palette so Jac visually belongs in every frame."},
+        {cat:"Footwear", desc:"Simple slip-on sandals or espadrilles — comfortable on village cobblestones and market mornings."},
+        {cat:"Accessories", desc:"A lightweight silk or linen scarf, worn loosely or tied to a bag — adds movement and colour without looking styled."},
+      ],
+      note:"Lean more relaxed for Day 1 and market mornings; more elevated for MANE, Mougins and the vineyard's golden hour."
+    }
+  }
+};
+
+/* ---------------------------------------------------------------------
+   STATE: everything the user changes. Loaded from and saved to
+   localStorage. Never edit this object literal directly — it's just
+   the empty-state shape used the first time the page opens.
+--------------------------------------------------------------------- */
+const STORAGE_KEY = "skinspaceFrancePlan_v1";
+const EMPTY_STATE = { version:1, shots:{}, checklistItems:{}, heroShots:{}, photos:{} };
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return JSON.parse(JSON.stringify(EMPTY_STATE));
+    const parsed = JSON.parse(raw);
+    return Object.assign(JSON.parse(JSON.stringify(EMPTY_STATE)), parsed);
+  }catch(e){
+    console.warn("Could not read saved progress — starting fresh.", e);
+    return JSON.parse(JSON.stringify(EMPTY_STATE));
+  }
+}
+
+let STATE = loadState();
+let saveTimer = null;
+function saveState(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE));
+    }catch(e){
+      console.warn("Could not save progress — device storage may be full.", e);
+      showSaveWarning();
+    }
+  }, 150);
+}
+
+function showSaveWarning(){
+  const el = document.getElementById('save-warning');
+  el.textContent = "Couldn't save your last change — device storage may be full. Export a backup when you can.";
+  el.style.display = 'block';
+  clearTimeout(showSaveWarning._t);
+  showSaveWarning._t = setTimeout(() => { el.style.display = 'none'; }, 5000);
+}
+
+function exportStateAsJSON(){
+  const stamp = new Date().toISOString().slice(0,10);
+  const json = JSON.stringify(STATE, null, 2);
+
+  const tab = window.open('', '_blank');
+  if(tab){
+    tab.document.title = `skinspace-france-plan-backup-${stamp}`;
+    const note = tab.document.createElement('p');
+    note.style.cssText = 'font-family:sans-serif;font-size:16px;font-weight:bold;padding:16px 20px;margin:0;background:#F1E7DD;color:#33343F;';
+    note.textContent = 'Your backup is below. Press Cmd+S now to save this page as a file (any name is fine) — the text is already selected, so Cmd+C also works if you\'d rather paste it somewhere.';
+    tab.document.body.appendChild(note);
+    const pre = tab.document.createElement('pre');
+    pre.style.cssText = 'white-space:pre-wrap;word-break:break-all;font-family:monospace;padding:20px;';
+    pre.textContent = json;
+    tab.document.body.appendChild(pre);
+    tab.document.body.style.margin = '0';
+    const range = tab.document.createRange();
+    range.selectNodeContents(pre);
+    const sel = tab.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }else{
+    alert("Your browser blocked the backup tab from opening — please allow pop-ups for this site in Safari's settings, then try again. Trying the direct download instead for now.");
+  }
+
+  try{
+    const blob = new Blob([json], {type:"application/json"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `skinspace-france-plan-backup-${stamp}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  }catch(e){
+    console.warn("Direct download failed, the backup tab is the fallback.", e);
+  }
+}
+
+function importStateFromJSON(input){
+  const file = input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try{
+      const parsed = JSON.parse(e.target.result);
+      STATE = Object.assign(JSON.parse(JSON.stringify(EMPTY_STATE)), parsed);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE));
+      alert("Backup loaded — this page will now reload to show it.");
+      location.reload();
+    }catch(err){
+      alert("Couldn't read that file — make sure it's a backup exported from this same page.");
+    }
+  };
+  reader.readAsText(file);
+  input.value = '';
+}
+
+/* ---------------------------------------------------------------------
+   Rendering
+--------------------------------------------------------------------- */
+function dayProgressText(day){
+  const total = day.shots.length;
+  const done = day.shots.filter(s => STATE.shots[s.id] && STATE.shots[s.id].captured).length;
+  return `${done} of ${total} captured`;
+}
+
+function getChecklistList(ownerId){
+  if(ownerId === 'tools') return PLAN.sharedChecklists;
+  const day = PLAN.days.find(d => d.id === ownerId);
+  return day ? day.checklists : [];
+}
+
+function checklistProgressText(ownerId, li){
+  const cl = getChecklistList(ownerId)[li];
+  const total = cl.categories.reduce((n,c) => n + c.items.length, 0);
+  let found = 0;
+  cl.categories.forEach((cat, ci) => cat.items.forEach((item, ii) => {
+    if(STATE.checklistItems[`${ownerId}-cl${li}-${ci}-${ii}`]) found++;
+  }));
+  return `${found} of ${total} ${cl.progressWord || "found"}`;
+}
+
+function renderChecklistBlocks(ownerId, checklists){
+  return (checklists || []).map((cl, li) => `
+    <div class="prop-hunt" id="checklist-${ownerId}-${li}">
+      <p class="eyebrow-small">${cl.eyebrow}${cl.window ? ' · ' + cl.window : ''}</p>
+      <h2 class="section-heading">${cl.title}</h2>
+      <p class="prop-hunt-intro">${cl.intro}</p>
+      <div class="prop-grid">
+        ${cl.categories.map((cat, ci) => `
+          <div class="prop-cat">
+            ${cat.title ? `<p class="prop-cat-title">${cat.title}</p>` : ''}
+            <div class="prop-items">
+              ${cat.items.map((item, ii) => {
+                const key = `${ownerId}-cl${li}-${ci}-${ii}`;
+                const checked = STATE.checklistItems[key] ? 'checked' : '';
+                return `
+                <div class="prop-item">
+                  <input type="checkbox" id="chk-${key}" ${checked} onchange="toggleChecklistItem('${ownerId}', ${li}, ${ci}, ${ii})">
+                  <label for="chk-${key}">${item}</label>
+                </div>`;
+              }).join('')}
+            </div>
+          </div>`).join('')}
+      </div>
+      <p class="progress-text" id="prop-progress-${ownerId}-${li}">${checklistProgressText(ownerId, li)}</p>
+    </div>`).join('');
+}
+
+function renderLocationCard(loc){
+  const heroItems = loc.hero.map((h, i) => {
+    const photoId = `${loc.id}-hero-${i}`;
+    const saved = STATE.photos[photoId];
+    const photoInner = saved
+      ? `<img src="${saved.src}" alt="Reference for ${h.title}" style="object-position:${saved.pos || '50% 50%'};" onload="makeImageDraggable(this, '${photoId}')">`
+      : `<span class="dz-label">+ Add photo</span>`;
+    const photoBox = (loc.noPhotos || h.noPhoto) ? '' : `
+      <div class="loc-hero-photo drop-zone" onclick="document.getElementById('file-${photoId}').click()">
+        ${photoInner}
+        <input type="file" accept="image/*" id="file-${photoId}" style="display:none" onchange="handleFile(this, '${photoId}')">
+      </div>`;
+    return `
+    <li class="loc-hero-item">
+      <p class="loc-hero-title">${i+1}. ${h.title}${h.isHero ? '<span class="hero-star">★ Hero Shot</span>' : ''}</p>
+      <p class="loc-hero-desc">${h.desc}</p>
+      ${photoBox}
+    </li>`;
+  }).join('');
+
+  const supportingItems = loc.supporting.map(s => `<li>${s}</li>`).join('');
+
+  return `
+  <details class="loc-card">
+    <summary>
+      <div>
+        <p class="loc-summary-meta">${loc.time ? loc.time + ' · ' : ''}LOCATION</p>
+        <p class="loc-summary-title">${loc.title}</p>
+        <p class="loc-summary-purpose">${loc.oneliner}</p>
+      </div>
+      <span class="loc-chevron">VIEW DETAILS</span>
+    </summary>
+    <div class="loc-body">
+      <div class="loc-block">
+        <p class="loc-block-heading">Creative purpose</p>
+        <p class="loc-text">${loc.purpose}</p>
+      </div>
+      <div class="loc-block">
+        <p class="loc-block-heading">Hero Images</p>
+        <ul class="loc-hero-list">${heroItems}</ul>
+      </div>
+      <div class="loc-block">
+        <p class="loc-block-heading">Supporting content ideas</p>
+        <ul class="loc-list">${supportingItems}</ul>
+      </div>
+      <div class="loc-block">
+        <p class="loc-block-heading">Suggested iPhone capture method</p>
+        <p class="loc-text">${loc.capture}</p>
+      </div>
+      <div class="loc-block">
+        <p class="loc-block-heading">Props needed</p>
+        <p class="loc-text">${loc.propsNeeded}</p>
+      </div>
+      <div class="loc-block">
+        <p class="loc-block-heading">Styling ideas</p>
+        <p class="loc-text">${loc.styling}</p>
+      </div>
+      <div class="loc-block">
+        <p class="loc-block-heading">Best time of day / lighting</p>
+        <p class="loc-text">${loc.bestLight}</p>
+      </div>
+      <div class="loc-block">
+        <p class="loc-block-heading">Suggested content outputs</p>
+        <p class="loc-text">${loc.outputs}</p>
+      </div>
+      <div class="loc-block">
+        <p class="loc-block-heading">Props</p>
+        <div class="loc-props-grid">
+          <div><p class="loc-props-cat-title">Bring from home</p><p class="${loc.props.home ? '' : 'none'}">${loc.props.home || 'None needed'}</p></div>
+          <div><p class="loc-props-cat-title">Source from the Airbnb</p><p class="${loc.props.airbnb ? '' : 'none'}">${loc.props.airbnb || 'None needed'}</p></div>
+          <div><p class="loc-props-cat-title">Buy locally or at the market</p><p class="${loc.props.buy ? '' : 'none'}">${loc.props.buy || 'None needed'}</p></div>
+          <div><p class="loc-props-cat-title">Naturally available</p><p>${loc.props.natural}</p></div>
+        </div>
+      </div>
+    </div>
+  </details>`;
+}
+
+function renderOverviewPanel(){
+  const heroItems = PLAN.overview.masterHeroShots.map((h, i) => {
+    const checked = STATE.heroShots[h.id] ? 'checked' : '';
+    return `
+    <div class="master-hero-item">
+      <input type="checkbox" id="chk-${h.id}" ${checked} onchange="toggleHeroShot('${h.id}')">
+      <span class="master-hero-num">${i+1}</span>
+      <span><span class="master-hero-title">${h.title}</span><span class="master-hero-loc">— ${h.location}</span></span>
+    </div>`;
+  }).join('');
+
+  const stylingItems = PLAN.overview.stylingJac.categories.map(c => `
+    <div class="styling-card">
+      <p class="styling-cat-title">${c.cat}</p>
+      <p>${c.desc}</p>
+    </div>`).join('');
+
+  const pillarItems = PLAN.overview.contentPillars.map(p => `
+    <div class="styling-card">
+      <p class="styling-cat-title">${p.title}</p>
+      <p>${p.desc}</p>
+    </div>`).join('');
+
+  const keywordPills = PLAN.overview.visualKeywords.map(k => `<span class="keyword-pill">${k}</span>`).join('');
+
+  const objectiveItems = PLAN.overview.objectives.map(o => `<li>${o}</li>`).join('');
+
+  const propsGroups = PLAN.overview.masterProps.map(g => `
+    <div>
+      <p class="loc-props-cat-title">${g.cat}</p>
+      <ul class="loc-list">${g.items.map(i => `<li>${i}</li>`).join('')}</ul>
+    </div>`).join('');
+
+  return `
+    <p class="eyebrow-small">OVERVIEW</p>
+    <h2 class="section-heading">The Trip, in Brief</h2>
+
+    <div class="loc-block" style="margin-top:24px;">
+      <p class="loc-block-heading">Creative Overview</p>
+      <p class="loc-text">${PLAN.overview.creativeOverview}</p>
+    </div>
+
+    <div class="loc-block" style="margin-top:32px;">
+      <p class="loc-block-heading">Visual Keywords</p>
+      <div class="keyword-row">${keywordPills}</div>
+    </div>
+
+    <div class="loc-block" style="margin-top:32px;">
+      <p class="loc-block-heading">Content Pillars</p>
+      <div class="styling-grid">${pillarItems}</div>
+    </div>
+
+    <div class="loc-block" style="margin-top:32px;">
+      <p class="loc-block-heading">Objectives</p>
+      <ul class="loc-list">${objectiveItems}</ul>
+    </div>
+
+    <div class="loc-block" style="margin-top:32px;">
+      <p class="loc-block-heading">Master Hero Shots</p>
+      <p class="loc-text" style="margin-bottom:14px;">One signature image per location — a complete visual index of the trip, in chronological order, readable in under two minutes. Tick each off once it's confirmed.</p>
+      <div class="master-hero-list">${heroItems}</div>
+    </div>
+
+    <div class="loc-block" style="margin-top:32px;">
+      <p class="loc-block-heading">Master Props List</p>
+      <div class="loc-props-grid">${propsGroups}</div>
+    </div>
+
+    <div class="loc-block" style="margin-top:32px;">
+      <p class="loc-block-heading">Styling — Jac</p>
+      <p class="loc-text" style="margin-bottom:14px;">${PLAN.overview.stylingJac.intro}</p>
+      <div class="styling-grid">${stylingItems}</div>
+      <p class="loc-text" style="margin-top:14px;font-style:italic;">${PLAN.overview.stylingJac.note}</p>
+    </div>
+  `;
+}
+
+const tabsEl = document.getElementById('tabs');
+const panelsEl = document.getElementById('panels');
+
+const overviewTabBtn = document.createElement('button');
+overviewTabBtn.className = 'tab tab-overview active';
+overviewTabBtn.dataset.day = 'overview';
+overviewTabBtn.innerHTML = `<span class="t-num">START HERE</span><span class="t-title">Overview</span>`;
+overviewTabBtn.addEventListener('click', () => showDay('overview'));
+tabsEl.appendChild(overviewTabBtn);
+
+const overviewPanel = document.createElement('div');
+overviewPanel.className = 'panel active';
+overviewPanel.id = 'panel-overview';
+overviewPanel.innerHTML = renderOverviewPanel();
+panelsEl.appendChild(overviewPanel);
+
+PLAN.days.forEach((day, idx) => {
+  const tabBtn = document.createElement('button');
+  tabBtn.className = 'tab';
+  tabBtn.dataset.day = day.id;
+  tabBtn.innerHTML = `<span class="t-num">${day.num} · ${day.date}</span><span class="t-title">${day.title}</span>`;
+  tabBtn.addEventListener('click', () => showDay(day.id));
+  tabsEl.appendChild(tabBtn);
+
+  const panel = document.createElement('div');
+  panel.className = 'panel';
+  panel.id = 'panel-' + day.id;
+
+  const startItems = day.startOfDay.map(s => `
+    <div class="start-item">
+      <span class="start-time">${s.time}</span>
+      <span class="start-label">${s.label}</span>
+    </div>`).join('');
+
+  const timelineItems = day.timeline.map(t => `
+    <div class="t-stop">
+      <div class="t-time">${t.time}</div>
+      <div class="t-activity">${t.activity}</div>
+      ${t.note ? `<div class="t-notetext">${t.note}</div>` : ''}
+    </div>`).join('');
+
+  const checklistBlocks = renderChecklistBlocks(day.id, day.checklists);
+
+  const hasLocations = Array.isArray(day.locations);
+
+  let shotsSection;
+  if(hasLocations){
+    const locationCards = day.locations.map(renderLocationCard).join('');
+    shotsSection = `
+    <p class="eyebrow-small" style="margin:28px 0 14px;">LOCATIONS</p>
+    <div class="loc-cards">${locationCards}</div>`;
+  }else{
+    const shotCards = day.shots.map(s => {
+      const st = STATE.shots[s.id];
+      const captured = !!(st && st.captured);
+      return `
+      <div class="shot-card${captured ? ' done' : ''}" data-shot="${s.id}">
+        <div class="drop-zone" onclick="document.getElementById('file-${s.id}').click()">
+          <span class="dz-label">+ Add reference photo</span>
+          <input type="file" accept="image/*" id="file-${s.id}" style="display:none" onchange="handleFile(this, '${s.id}')">
+        </div>
+        <div class="shot-body">
+          <div class="tag-row"><span class="tag ${s.tag}">${s.tagLabel}</span></div>
+          <p class="shot-title">${s.title}</p>
+          <p class="shot-desc">${s.desc}</p>
+          <p class="shot-prop"><b>Prop:</b> ${s.prop}</p>
+          <div class="check-row">
+            <input type="checkbox" id="chk-${s.id}" ${captured ? 'checked' : ''} onchange="toggleShot('${day.id}', '${s.id}')">
+            <label for="chk-${s.id}">Captured</label>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+    shotsSection = `
+    <div class="progress-row">
+      <p class="eyebrow-small" style="margin:0;">SHOTS TO CAPTURE</p>
+      <p class="progress-text" id="progress-${day.id}">${dayProgressText(day)}</p>
+    </div>
+    <div class="shots-grid">${shotCards}</div>`;
+  }
+
+  panel.innerHTML = `
+    <div class="callout">
+      <p class="callout-title">Start of day</p>
+      <div class="start-row">${startItems}</div>
+      <p class="callout-note">${day.startNote}</p>
+    </div>
+
+    <p class="eyebrow-small">SCHEDULE</p>
+    <h2 class="section-heading">${day.title}</h2>
+    ${day.purpose ? `<p class="day-purpose">${day.purpose}</p>` : ''}
+    <div class="timeline">${timelineItems}</div>
+
+    ${checklistBlocks}
+
+    ${shotsSection}
+  `;
+
+  panelsEl.appendChild(panel);
+});
+
+const toolsTabBtn = document.createElement('button');
+toolsTabBtn.className = 'tab tab-tools';
+toolsTabBtn.dataset.day = 'tools';
+toolsTabBtn.innerHTML = `<span class="t-num">PRODUCTION</span><span class="t-title">Emma's Shoot Tools</span>`;
+toolsTabBtn.addEventListener('click', () => showDay('tools'));
+tabsEl.appendChild(toolsTabBtn);
+
+const toolsPanel = document.createElement('div');
+toolsPanel.className = 'panel';
+toolsPanel.id = 'panel-tools';
+toolsPanel.innerHTML = `
+  <p class="eyebrow-small">PRODUCTION</p>
+  <h2 class="section-heading">Emma's Shoot Tools</h2>
+  <p class="day-purpose">Personal pre-shoot checklist — not part of the shared creative plan.</p>
+  ${renderChecklistBlocks('tools', PLAN.sharedChecklists)}
+`;
+panelsEl.appendChild(toolsPanel);
+
+function showDay(id){
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.day === id));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-'+id));
+}
+
+window.addEventListener('beforeprint', () => {
+  document.querySelectorAll('details').forEach(d => d.open = true);
+});
+
+function handleFile(input, shotId){
+  const file = input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      const maxDim = 1600;
+      const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(img.width * scale);
+      canvas.height = Math.round(img.height * scale);
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      STATE.photos[shotId] = {src: canvas.toDataURL('image/jpeg', 0.75), pos:"50% 50%"};
+      saveState();
+      const zone = input.closest('.drop-zone');
+      zone.innerHTML = `<img src="${STATE.photos[shotId].src}" alt="Reference photo" style="object-position:${STATE.photos[shotId].pos};">`;
+      zone.appendChild(input);
+      makeImageDraggable(zone.querySelector('img'), shotId);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function makeImageDraggable(img, shotId){
+  const zone = img.parentElement;
+  let dragging = false, moved = false;
+  let startX = 0, startY = 0, startPosX = 50, startPosY = 50;
+
+  function currentPos(){
+    const [x, y] = (img.style.objectPosition || '50% 50%').split(' ').map(parseFloat);
+    return {x: isNaN(x) ? 50 : x, y: isNaN(y) ? 50 : y};
+  }
+  function pointOf(e){
+    return e.touches ? e.touches[0] : e;
+  }
+  function onDown(e){
+    dragging = true;
+    moved = false;
+    const p = pointOf(e);
+    startX = p.clientX;
+    startY = p.clientY;
+    const pos = currentPos();
+    startPosX = pos.x;
+    startPosY = pos.y;
+    img.classList.add('dragging');
+  }
+  function onMove(e){
+    if(!dragging) return;
+    e.preventDefault();
+    const p = pointOf(e);
+    const dx = p.clientX - startX;
+    const dy = p.clientY - startY;
+    if(Math.abs(dx) > 3 || Math.abs(dy) > 3) moved = true;
+    const rect = zone.getBoundingClientRect();
+    const newX = Math.min(100, Math.max(0, startPosX - (dx / rect.width) * 100));
+    const newY = Math.min(100, Math.max(0, startPosY - (dy / rect.height) * 100));
+    img.style.objectPosition = `${newX}% ${newY}%`;
+  }
+  function onUp(){
+    if(dragging && moved && shotId && STATE.photos[shotId]){
+      STATE.photos[shotId].pos = img.style.objectPosition;
+      saveState();
+    }
+    dragging = false;
+    img.classList.remove('dragging');
+  }
+  img.addEventListener('click', e => {
+    if(moved){ e.preventDefault(); e.stopPropagation(); }
+  });
+  img.addEventListener('mousedown', onDown);
+  img.addEventListener('touchstart', onDown, {passive:true});
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('touchmove', onMove, {passive:false});
+  window.addEventListener('mouseup', onUp);
+  window.addEventListener('touchend', onUp);
+}
+
+function toggleHeroShot(id){
+  const input = document.getElementById(`chk-${id}`);
+  STATE.heroShots[id] = input.checked;
+  saveState();
+}
+
+function toggleChecklistItem(ownerId, li, ci, ii){
+  const key = `${ownerId}-cl${li}-${ci}-${ii}`;
+  const input = document.getElementById(`chk-${key}`);
+  STATE.checklistItems[key] = input.checked;
+  saveState();
+  document.getElementById(`prop-progress-${ownerId}-${li}`).textContent = checklistProgressText(ownerId, li);
+}
+
+function toggleShot(dayId, shotId){
+  const input = document.getElementById(`chk-${shotId}`);
+  if(!STATE.shots[shotId]) STATE.shots[shotId] = { captured:false };
+  STATE.shots[shotId].captured = input.checked;
+  saveState();
+  const card = document.querySelector(`.shot-card[data-shot="${shotId}"]`);
+  card.classList.toggle('done', input.checked);
+  const day = PLAN.days.find(d => d.id === dayId);
+  document.getElementById(`progress-${dayId}`).textContent = dayProgressText(day);
+}
+</script>
+</body>
+</html>
